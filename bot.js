@@ -327,11 +327,12 @@ var mentionned = message.mentions.members.first();
       var id = new  Discord.RichEmbed()
        
     .setColor("#0a0909")
-    .setAuthor(message.author.username, message.author.avatarURL) 
+    .setAuthor(message.author.username) 
+ .setThumbnail(message.author.avatarURL)
 .addField(': دخولك لديسكورد قبل', `${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} **\n** \`${moment(heg.createdTimestamp).fromNow()}\`` ,true) 
 .addField(': انضمامك لسيرفر قبل', `${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
 .addField(': عدد الدعوات', inviteCount,false)
-.setFooter("-")  
+.setFooter("S Bot.")  
     message.channel.sendEmbed(id);
 })
 }
@@ -340,6 +341,41 @@ var mentionned = message.mentions.members.first();
          
      });
 
+
+client.on('message', message => {
+    if (message.author.bot) return;
+    if(message.content == '$mb') {
+    const embed = new Discord.RichEmbed()
+    .addField(`حالة الأعضاء 🔋`,'-',   true)
+.addField(`💚 اونلاين :   ${message.guild.members.filter(m=>m.presence.status == 'online').size}`,'-',   true)
+.addField(`❤ مشغول :     ${message.guild.members.filter(m=>m.presence.status == 'dnd').size}`,'-',   true)
+.addField(`💛 خامل :      ${message.guild.members.filter(m=>m.presence.status == 'idle').size}`,'-',   true)   
+.addField(`🖤 اوفلاين :   ${message.guild.members.filter(m=>m.presence.status == 'offline').size}`,'-',  true) 
+.addField(`💙   الكل :  ${message.guild.memberCount}`,'-',   true)         
+         message.channel.send({embed});
+
+    }
+  });
+
+
+client.on("message", message => {
+
+              
+          if(!message.channel.guild) return;
+   if(message.author.bot) return;
+      if(message.content === prefix + "icon"){ 
+          const embed = new Discord.RichEmbed()
+  
+      .setTitle(`This is  ** ${message.guild.name} **  Photo !`)
+  .setAuthor(message.author.username, message.guild.iconrURL)
+    .setColor(0x164fe3)
+    .setImage(message.guild.iconURL)
+    .setURL(message.guild.iconrURL)
+                    .setTimestamp()
+
+   message.channel.send({embed});
+      }
+  });
 
 client.on('message', message => {
 if(message.content === prefix + 'مصحف' || message.content === prefix + 'ms7f') {
@@ -663,7 +699,7 @@ aa.on("collect", r => {
  .setTitle(`Welcome To ${msg.guild.name}`)
           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
   .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
-.setDescription(`**:earth_americas:  General Commends**\n${prefix}**server - لعرض معلومات عن سيرفرك**تقييم**\n${prefix}**roll - القرعة**\n${prefix}**ms7f - فتح المصحف**\n${prefix}**invites - لرؤية دعواتك**\n${prefix}**skin - رؤية سكنك بماين كرافت**\n$**avatar [user] - لعرض صورتك او صوره شخص**\n$**system-sar7 - لمعرفة نظام امر صراحة**`)
+.setDescription(`**:earth_americas:  General Commends**\n${prefix}**server - لعرض معلومات عن سيرفرك**\n${prefix}**roll - القرعة**\n${prefix}**ms7f - فتح المصحف**\n${prefix}**invites - لرؤية دعواتك**\n${prefix}**skin - رؤية سكنك بماين كرافت**\n$**avatar [user] - لعرض صورتك او صوره شخص**\n$**system-sar7 - لمعرفة نظام امر صراحة**\n$**tC - لانشاء رومات مؤقتة**\n$**user - معلومات عن حسابك\n$**mb - معلومات عن الاعضاء**\n$**icon - لاظهار صورة سيرفرك**`)
  
  .setTimestamp()
 	});
