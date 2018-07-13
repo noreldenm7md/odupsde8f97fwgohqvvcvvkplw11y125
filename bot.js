@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
- const prefix = "!";
+ const prefix = "$";
 client.on('ready', () => {
     console.log('I am ready!');
 });
@@ -119,7 +119,7 @@ channel.guild.owner.send(`<@!${channelremover.id}>
 const ms = require("ms");
 var fs = require('fs');
  const moment = require('moment');
- const prefix = "$";
+
 
 
 client.on('ready', function(){
