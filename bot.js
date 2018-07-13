@@ -119,6 +119,20 @@ msg.delete();
 
 
 
+client.on("message", message => {
+    
+    if (!message.content.startsWith(prefix)) return;
+      let command = message.content.split(" ")[0];
+      command = command.slice(prefix.length);
+        if(command === "skin") {
+                const args = message.content.split(" ").slice(1).join(" ")
+        if (!args) return message.channel.send("** اكتب اسم سكنك . **");
+        const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
+    message.channel.send(image)
+        }
+    });
+
+
 client.on("message",function(message) {
     if(message.content.startsWith(prefix + 'stats')) {
         var uptime = client.uptime;
