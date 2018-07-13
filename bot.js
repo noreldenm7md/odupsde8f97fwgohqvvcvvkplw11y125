@@ -153,17 +153,6 @@ client.on('ready', function(){
 
 
 
-client.on("message", message => {
-
-    if (!message.content.startsWith(prefix + 'skin')) {
-                const args = message.content.split(" ").slice(1).join(" ")
-        if (!args) return message.channel.send("** Type your skin name **");
-        const image = new Discord.Attachment(`https://minotar.net/armor/body/${args}`, "skin.png");
-    message.channel.send(image)
-        }
-    });
-
-
 
 
 
