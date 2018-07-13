@@ -763,7 +763,6 @@ vv.on("collect", r => {
  .setTimestamp()
     });
     
-})
 cc.on("collect", r => {
     zg.delete();
 	msg.delete();
