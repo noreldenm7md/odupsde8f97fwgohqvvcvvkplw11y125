@@ -731,7 +731,7 @@ aa.on("collect", r => {
  .setTitle(`Welcome To ${msg.guild.name}`)
           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
   .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
-.setDescription(`**:earth_americas:  General Commends**\n${prefix}**server - لعرض معلومات عن سيرفرك**\${prefix}**ms7f - فتح المصحف**\n${prefix}**invites - لرؤية دعواتك***\n$**avatar [user] - لعرض صورتك او صوره شخص**\n$**system-sar7 - لمعرفة نظام امر صراحة**\n$**stats - لعرض معلومات البوت**\n$**roll - القرعة**`) 
+.setDescription(`**:earth_americas:  General Commends**\n${prefix}**server - لعرض معلومات عن سيرفرك**\n${prefix}**ms7f - فتح المصحف**\n${prefix}**invites - لرؤية دعواتك***\n$**avatar [user] - لعرض صورتك او صوره شخص**\n$**system-sar7 - لمعرفة نظام امر صراحة**\n$**stats - لعرض معلومات البوت**\n$**roll - القرعة**`) 
  .setTimestamp()
 	});
 	
