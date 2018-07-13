@@ -711,18 +711,15 @@ coll.first().delete()
 }).then(zg => {
      zg.react('🌏').then(r=>{
      zg.react('🔧').then(r=>{
-     zg.react('🎶').then(r=>{
      zg.react('💥').then(r=>{
      zg.react('❌').then(r=>{           
  var aaa = (reaction, user) => reaction.emoji.name === '🌏' && user.id === msg.author.id;
    var mmm = (reaction, user) => reaction.emoji.name === '🔧' && user.id === msg.author.id;
-    var fff = (reaction, user) => reaction.emoji.name === '🎶' && user.id === msg.author.id;
     var vvv = (reaction, user) => reaction.emoji.name === '💥' && user.id === msg.author.id;
     var ccc = (reaction, user) => reaction.emoji.name === '❌' && user.id === msg.author.id;
 
     var aa = zg.createReactionCollector(aaa, { maxMatches:1 , time: 60000 , });
     var mm = zg.createReactionCollector(mmm, { maxMatches:1 , time: 60000 , });
-   var ff = zg.createReactionCollector(fff, { maxMatches:1 , time: 60000 , });
     var vv = zg.createReactionCollector(vvv, { maxMatches:1 , time: 60000 , });
     var cc = zg.createReactionCollector(ccc, { maxMatches:1 , time: 60000 , });// انيك ام الغباء شتسوووي؟
     //نيك الغباء وش منتظر -_-هههههه
@@ -734,8 +731,7 @@ aa.on("collect", r => {
  .setTitle(`Welcome To ${msg.guild.name}`)
           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
   .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
-.setDescription(`**:earth_americas:  General Commends**\n${prefix}**server - لعرض معلومات عن سيرفرك**\n${prefix}**profile - الملف الشخصي**\n${prefix}**rep - أعطاء نقاط تقييم**\n${prefix}**credit - معرفة الرصيد**\n${prefix}**daily - الحصول علي الراتب اليومي**\n${prefix}**roll - القرعة**\n${prefix}**tar - لترجمة من لغه الي اي لغة**\n$**cal - لتشغيل الألة الحاسبة**\n${prefix}**ms7f - فتح المصحف**\n${prefix}**invites - لرؤية دعواتك**\n${prefix}**skin - رؤية سكنك بماين كرافت**\n$**avatar [user] - لعرض صورتك او صوره شخص**\n$**system-sar7 - لمعرفة نظام امر صراحة**\n$**tag - زخرفة كلام عربي وانجليزي**`)
- 
+.setDescription(`**:earth_americas:  General Commends**\n${prefix}**server - لعرض معلومات عن سيرفرك**\${prefix}**ms7f - فتح المصحف**\n${prefix}**invites - لرؤية دعواتك***\n$**avatar [user] - لعرض صورتك او صوره شخص**\n$**system-sar7 - لمعرفة نظام امر صراحة**\n$**stats - لعرض معلومات البوت**\n$**roll - القرعة**`) 
  .setTimestamp()
 	});
 	
@@ -753,19 +749,6 @@ mm.on("collect", r => {
 	});
 	
 	}) 
-ff.on("collect", r => {
-	zg.edit({embed: new Discord.RichEmbed()
- .setAuthor(client.user.username , client.user.avatarURL)
- .setThumbnail(msg.author.avatarURL)
- .setTitle(`Welcome To ${msg.guild.name}`)
-           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
-           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
-  .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
- .setDescription(`** :musical_note:  Music Commends**\n${prefix}**play - لتشغيل اغنية**\n${prefix}**stop - لايقاف الأغنية**\n${prefix}**skip - لتجآوز الأغنية الحآلية**\n${prefix}**resume - لموآصلة الإغنية بعد إيقآفهآ مؤقتا**\n${prefix}**vol - لتقليل ورفع مستوي صوت البوت**\n`)
- .setTimestamp()
-	});
-
-})
 vv.on("collect", r => {
     zg.edit({embed: new Discord.RichEmbed ()
 .setAuthor(client.user.username , client.user.avatarURL)
