@@ -283,7 +283,4 @@ npm install queue
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
-     console.log(`By ! 3RB ♕ | OP 🔥👑⚡#9842`)
-     console.log(`xRokz#1488`)
-     console.log(`iAmHeRo¹⁵ ☤#1705`)
-     console.log(`Eyad,🍺🥂
+    
