@@ -48,6 +48,7 @@ client.on('ready', function(){
 
 
 
+const moment = require('moment');
     client.on('message', message => {
           if (message.content.startsWith("$id")) {
             if(!message.channel.guild) return message.reply('هذا الامر للسيرفرات فقط')
@@ -76,9 +77,7 @@ client.on('ready', function(){
    .addField(': تاريخ دخولك لسيرفرنا', `${moment(h.joinedAt).format('YYYY/M/D HH:mm')} \n \`${moment(h.joinedAt).fromNow()}\``, true)
    .setFooter(`${message.author.username}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
    message.channel.send(id)
-}       
- 
-});
+}       });
 
 
 
