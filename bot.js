@@ -231,47 +231,6 @@ msg.delete();
 });
 
 
-var dat = JSON.parse("{}");
-function forEachObject(obj, func) {
-    Object.keys(obj).forEach(function (key) { func(key, obj[key]) })
-}
-client.on("ready", () => {
-    var guild;
-    while (!guild)
-        guild = client.guilds.find("name", ".Stars Community")
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            dat[Inv] = Invite.uses;
-        })
-    })
-})
-client.on("guildMemberAdd", (member) => {
-    var channel = member.guild.channels.find('name', 'welcome');
-    if (!channel) {
-        console.log("!channel fails");
-        return;
-    }
-    if (member.id == client.user.id) {
-        return;
-    }
-    console.log('made it till here!');
-    var guild;
-    while (!guild)
-        guild = client.guilds.find("name", ".Stars Community")
-    guild.fetchInvites().then((data) => {
-        data.forEach((Invite, key, map) => {
-            var Inv = Invite.code;
-            if (dat[Inv])
-                if (dat[Inv] < Invite.uses) {
-                    console.log(3);
-                    console.log(`${member} joined over ${Invite.inviter}'s invite ${Invite.code}`)
- channel.send(`**Welcome To Stars Community. :dove: ** \n♥ **تم دعوته من قبل ${Invite.inviter} ♥ \n**__Have Fun :top: __**`)            
- }
-            dat[Inv] = Invite.uses;
-        })
-    })
-});
 
 
 client.on("message",function(message) {
@@ -744,7 +703,7 @@ coll.first().delete()
 
 
 
-var ac = JSON.parse(fs.readFileSync("./antic.json", "UTF-8"))
+
 	client.on('message', async msg => {
 	var prefix = "$";
 	var user = msg.author;
