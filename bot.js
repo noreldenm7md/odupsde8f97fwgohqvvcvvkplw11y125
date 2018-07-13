@@ -611,9 +611,8 @@ coll.first().delete()
     var aa = zg.createReactionCollector(aaa, { maxMatches:1 , time: 60000 , });
     var mm = zg.createReactionCollector(mmm, { maxMatches:1 , time: 60000 , });
     var vv = zg.createReactionCollector(vvv, { maxMatches:1 , time: 60000 , });
-    var cc = zg.createReactionCollector(ccc, { maxMatches:1 , time: 60000 , });// انيك ام الغباء شتسوووي؟
-    //نيك الغباء وش منتظر -_-هههههه
-
+    var cc = zg.createReactionCollector(ccc, { maxMatches:1 , time: 60000 , });
+  
 aa.on("collect", r => {
 	zg.edit({embed: new Discord.RichEmbed()
  .setAuthor(client.user.username , client.user.avatarURL)
