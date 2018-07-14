@@ -75,7 +75,7 @@ ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
 });
 
 
-
+fggfgfgfgngnيبيبيبيب
 
 
 client.on('message', message => {
