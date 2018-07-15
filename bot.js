@@ -19,23 +19,7 @@ var fs = require('fs');
 
 
 
-client.on('ready', function(){
-    var ms = 30000 ;
-    var setGame = [`$help | $inv. `,` S Bot Discord.!`];
-    var i = -1;
-    var j = 0;
-    setInterval(function (){
-        if( i == -1 ){
-            j = 1;
-        }
-        if( i == (setGame.length)-1 ){
-            j = -1;
-        }
-        i = i+j;
-        client.user.setGame(setGame[i],`http://www.twitch.tv/psdkkwpojdwjdw`);
-    }, ms);30000
 
-});
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////اذا جاك ايرور وقت تشغيل البوت وقالك الجيسون فيه غلط///////////////////////////
@@ -84,6 +68,38 @@ if (message.content.startsWith(adminprefix + 'setavatar')) {
 }
 });
 
+
+client.on('message',  (message) => {
+        if(message.content.startsWith('$punch')) {
+  let user = message.mentions.users.first();
+  if (!user) {
+    /**
+     * The command was ran with invalid parameters.
+     * @fires commandUsage
+     */
+    return message.emit('commandUsage', message, this.help);
+  }
+
+  let punches = [
+    'https://i.giphy.com/media/iWEIxgPiAq58c/giphy.gif',
+    'https://i.giphy.com/media/DViGV8rfVjw6Q/giphy.gif',
+    'https://i.giphy.com/media/GoN89WuFFqb2U/giphy.gif',
+    'https://i.giphy.com/media/xT0BKiwgIPGShJNi0g/giphy.gif',
+    'https://i.giphy.com/media/Lx8lyPHGfdNjq/giphy.gif'
+  ];
+
+  message.channel.send({
+    embed: {
+      description: `${message.author.username} عطاك كففف ${user.username}! :punch:`,
+      image: {
+        url: punches[Math.floor(Math.random() * punches.length)]
+      }
+    }
+  }).catch(e => {
+    client.log.error(e);
+  })
+        }  
+});
 
 client.on('message', message => {
     if (message.content.startsWith("$tr")) {
@@ -181,53 +197,46 @@ let welcomer = member.guild.channels.find("name","welcome");
 
 
 client.on('message', message => {
-   if(!message.channel.guild) return;
-if(message.content.startsWith(prefix + 'bc')) {
-if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-if(!message.member.hasPermission('ADMINISTRATOR')) return      
-message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
-const args = message.content.split(" ").slice(1).join(" ")
-const BcList = new Discord.RichEmbed()
-.setThumbnail(message.author.avatarURL)
-.setAuthor(`محتوى الرساله : ${args}`)
-.setDescription(`**برودكاست بـ امبد 📝\nبرودكاست بدون امبد✏ \nلديك دقيقه للأختيار قبل الغاء البرودكاست**`)
-if (!args) return message.reply('**يجب عليك كتابة كلمة او جملة لإرسال البرودكاست**');message.channel.send(BcList).then(msg => {
-msg.react('📝')
-.then(() => msg.react('✏'))
-.then(() =>msg.react('📝'))
- 
-var EmbedBcFilter = (reaction, user) => reaction.emoji.name === '📝' && user.id === message.author.id;
-var NormalBcFilter = (reaction, user) => reaction.emoji.name === '✏' && user.id === message.author.id;
- 
-var EmbedBc = msg.createReactionCollector(EmbedBcFilter, { time: 60000 });
-var NormalBc = msg.createReactionCollector(NormalBcFilter, { time: 60000 });
- 
- 
-EmbedBc.on("collect", r => {
- 
-message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
-message.guild.members.forEach(m => {
-var EmbedRep = args.replace('<server>' ,message.guild.name).replace('<user>', m).replace('<by>', `${message.author.username}#${message.author.discriminator}`)
-var bc = new
-Discord.RichEmbed()
-.setColor('RANDOM')
-.setDescription(EmbedRep)
-.setThumbnail(message.author.avatarURL)
-m.send({ embed: bc })
-msg.delete();
-})
-})
-NormalBc.on("collect", r => {
-  message.channel.send(`:ballot_box_with_check: تم ارسال الرساله بنجاح`).then(m => m.delete(5000));
-message.guild.members.forEach(m => {
-var NormalRep = args.replace('<server>' ,message.guild.name).replace('<user>', m).replace('<by>', `${message.author.username}#${message.author.discriminator}`)
-m.send(NormalRep);
-msg.delete();
-})
-})
-})
-}
-});
+              if(!message.channel.guild) return;
+    var prefix = "$";
+    if(message.content.startsWith('$bc')) {
+    if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للإدارة**').then(m => m.delete(5000));
+  if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية لاستعمال هاذا الأمر** `ADMINISTRATOR`' );
+    let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
+    let copy = "S Bot";
+    let request = `Requested By ${message.author.username}`;
+    if (!args) return message.reply('**يجب عليك كتابة شيئ لإرسال البرودكاست**');message.channel.send(`**هل أنت متأكد من الإرسال؟ \nمحتوى البرودكاست:** \` ${args}\``).then(msg => {
+    msg.react('✅')
+    .then(() => msg.react('❌'))
+    .then(() =>msg.react('✅'))
+
+    let reaction1Filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === message.author.id;
+    let reaction2Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === message.author.id;
+	      let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
+    let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
+    reaction1.on("collect", r => {
+    message.channel.send(`☑ | Done ... The Broadcast Message Has Been Sent For ${message.guild.members.size} Members`).then(m => m.delete(5000));
+    message.guild.members.forEach(m => {
+    var bc = new
+       Discord.RichEmbed()
+       .setColor('RANDOM')
+       .setTitle('Broadcast')
+       .addField('Server', message.guild.name)
+       .addField('Sender', message.author.username)
+       .addField('Message', args)
+       .setThumbnail(message.author.avatarURL)
+       .setFooter(copy, client.user.avatarURL);
+    m.send({ embed: bc })
+    msg.delete();
+    })
+    })
+    reaction2.on("collect", r => {
+    message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));
+    msg.delete();
+    })
+    })
+    }
+    });
 
 
 
