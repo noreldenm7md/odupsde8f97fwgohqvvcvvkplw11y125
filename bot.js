@@ -76,11 +76,12 @@ ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
 
 client.on('message', message => {
   let embed = new Discord.RichEmbed()
-  .setColor('#000000')
+  .setColor('#050505')
   if(message.content.startsWith('$help')) {
     message.channel.startTyping()
     .addField('**`الاوامر : ','` قم باستخدم الاوامر التاليه **')
     .addField('**`$help-admin `',' لرؤية الاوامر العامة**')
+message.channel.stopTyping()
   }
 });
 
