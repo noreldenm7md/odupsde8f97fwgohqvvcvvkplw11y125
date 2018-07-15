@@ -78,10 +78,8 @@ client.on('message', message => {
   let embed = new Discord.RichEmbed()
   .setColor('#050505')
   if(message.content.startsWith('$help')) {
-    message.channel.startTyping()
     .addField('**`الاوامر : ','` قم باستخدم الاوامر التاليه **')
     .addField('**`$help-admin `',' لرؤية الاوامر العامة**')
-message.channel.stopTyping()
   }
 });
 
