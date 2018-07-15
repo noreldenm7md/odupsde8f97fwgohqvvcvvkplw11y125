@@ -74,15 +74,7 @@ ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
 }
 });
 
-client.on('message', message => {
-  let embed = new Discord.RichEmbed()
-  .setColor('#050505')
-  if(message.content.startsWith('$help')) {
-    .addField('**`الاوامر : ','` قم باستخدم الاوامر التاليه **')
-    .addField('**`$help-admin `',' لرؤية الاوامر العامة**')
-  message.channel.send({embed:embed})
-  }
-});
+
 
 client.on('message', message => {
     if (message.content.startsWith("$tr")) {
