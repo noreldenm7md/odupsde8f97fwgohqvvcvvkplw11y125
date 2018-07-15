@@ -80,6 +80,7 @@ client.on('message', message => {
   if(message.content.startsWith('$help')) {
     .addField('**`الاوامر : ','` قم باستخدم الاوامر التاليه **')
     .addField('**`$help-admin `',' لرؤية الاوامر العامة**')
+  message.channel.send({embed:embed})
   }
 });
 
