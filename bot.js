@@ -765,96 +765,67 @@ coll.first().delete()
   }
 })
 
+client.on("message", message => {
+ if (message.content === "$help") {
+  const embed = new Discord.RichEmbed() 
+      .setColor("#ffff00")
+      .setThumbnail(message.author.avatarURL)
+      .setDescription(`
+**
+' S Bot Discord.
+ بوت ديسكورت متكامل :soccer: :microphone: :earth_americas: 
+يوجد داخل البوت خاصية منع التهكير مجانا وبسهوله تامة :scream: 
+صيانة دورية :stopwatch: :wrench: 
+ 24 ساعة :point_up:
+اضافات يومية :link: 
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+__General's Commands | الأوامر العامة :earth_americas:  __
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+❖ $server - لرؤية بعض المعلومات عن سيرفرك 
+❖ $icon - لرؤية صوره سيرفرك
+❖ $user - لرؤية بعض المعلومات عن حسابك 
+❖ $avatar - لرؤية صورتك او صورة صديقك
+❖ $ms7f - لفتح المصحف 
+❖ $tr - للترجمة من اي لغة للغة
+❖ $cal - لتشيل الألـة الحاسبة
+❖ $system-sar7 - لمعرفة نظام امر صراحة
+❖ $invites - لرؤية دعواتك 
+❖ $tC - لعمل روم مؤقت 
+❖ $skin - رؤية سكنك في لعبة ماين كرافت
+❖ $roll - القرعة 
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+__Admin's Commands | أوامر الأدارة  :hammer_pick:   __
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+❖ $clear - لمسح الشات
+❖ $role [mention] [rolename] - لاعطاء شخص رتبة
+❖ $rerole [user] [rolename] - لازالة رتبة من شخص
+❖ $move [user] - لنقل شخص من روم صوتي لرومك
+❖ $move all - لنقل جميع المتواجدين بـ الرومات لرومك
+❖ $mct - لقفل جميع الرومات الكتابية
+❖ $umct - لفتح جميع الرومات الكتابية
+❖ $mcv - لقفل جميع الرومات الصوتية
+❖ $umcv - لفتح جميع الرومات الصوتية
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
+للمزّيد تفضّل للّدعّم الفنيّ : https://discord.gg/5ur5Gym
+لأضافّةّ البّوت : https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288
+▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁ **
+`)
 
 
+message.author.sendEmbed(embed)
+
+}
+}); 
 
 
-	client.on('message', async msg => {
-	var prefix = "$";
-	var user = msg.author;
-		if (msg.content === (prefix +'help')) {
-		if(!msg.channel.guild) return msg.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-		msg.channel.send({embed: new Discord.RichEmbed()
- .setAuthor(client.user.username , client.user.avatarURL)
- .setThumbnail(msg.author.avatarURL)
- .setTitle(`Welcome To ${msg.guild.name}`)
-           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
-  .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
- .setDescription(`**اذا كنت تريد الاوامر العامة اظغط الريكشن** 🌏 \n**اذا كنت تريد الاوامر الادارية اظغط الريكشن**🔧 \n**اذا كنت تريد بعض الشرح عن البوت اضغط الريكشن**💥 \n**اذا كنت تريد الالغاء اظغط الريكشن **❌\n              **وشكرا لمستخدمين البوت**`)  
- 
- .setTimestamp()
-}).then(zg => {
-     zg.react('🌏').then(r=>{
-     zg.react('🔧').then(r=>{
-     zg.react('💥').then(r=>{
-     zg.react('❌').then(r=>{           
- var aaa = (reaction, user) => reaction.emoji.name === '🌏' && user.id === msg.author.id;
-   var mmm = (reaction, user) => reaction.emoji.name === '🔧' && user.id === msg.author.id;
-    var vvv = (reaction, user) => reaction.emoji.name === '💥' && user.id === msg.author.id;
-    var ccc = (reaction, user) => reaction.emoji.name === '❌' && user.id === msg.author.id;
-
-    var aa = zg.createReactionCollector(aaa, { maxMatches:1 , time: 60000 , });
-    var mm = zg.createReactionCollector(mmm, { maxMatches:1 , time: 60000 , });
-    var vv = zg.createReactionCollector(vvv, { maxMatches:1 , time: 60000 , });
-    var cc = zg.createReactionCollector(ccc, { maxMatches:1 , time: 60000 , });
-  
-aa.on("collect", r => {
-	zg.edit({embed: new Discord.RichEmbed()
- .setAuthor(client.user.username , client.user.avatarURL)
- .setThumbnail(msg.author.avatarURL)
- .setTitle(`Welcome To ${msg.guild.name}`)
-          .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
-  .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
-.setDescription(`**:earth_americas:  General Commends**\n${prefix}**server - لعرض معلومات عن سيرفرك**\n${prefix}**roll - القرعة**\n${prefix}**ms7f - فتح المصحف**\n${prefix}**invites - لرؤية دعواتك**\n${prefix}**skin - رؤية سكنك بماين كرافت**\n$**avatar [user] - لعرض صورتك او صوره شخص**\n$**system-sar7 - لمعرفة نظام امر صراحة**\n$**tC - لانشاء رومات مؤقتة**\n$**user - معلومات عن حسابك**\n$**mb - معلومات عن الاعضاء**\n$**icon - لاظهار صورة سيرفرك**\n$**tr - لترجمة اي شي تقولة **\n$**cal - لتشغيل الألة الحاسبة**`)
- 
- .setTimestamp()
-	});
-	
-	
-	})//خراااااااااااااااااااااااااااااااااااااااااااااااااااااااااا
-mm.on("collect", r => {
-	zg.edit({embed: new Discord.RichEmbed()
- .setAuthor(client.user.username , client.user.avatarURL)
- .setThumbnail(msg.author.avatarURL)
- .setTitle(`Welcome To ${msg.guild.name}`)
-           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
-  .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
-.setDescription(`** :wrench: Admins Commends** \n$**system-man3 - لمعرفة كيفيه تفعيل نظام منع التهكير لسيرفرك**\n${prefix}**mute - لعمل ميوت للعضو**\n${prefix}**unmute لفك الميوت عن  العضو**\n${prefix}**bc - الرساله الجماعيه**\n${prefix}**ban - أمر الباند**\n**$kick - أمر الكيك**\n${prefix}**cc [number] - لصنع رتب الوان باختيار عدد**\n${prefix}**dc - لحذف جميع رتب الالوان فقط**\n**$clear - لمسح الشات**\n$**role [mention] [rolename] - لاعطاء شخص رتبة**\n$**rerole [user] [rolename] - لازالة رتبة من شخص**\n$**move [user] - لنقل شخص من روم صوتي لرومك**\n$**move all - لنقل جميع المتواجدين بـ الرومات لرومك**\n$**mct - لقفل جميع الرومات الكتابية**\n$**umct - لفتح جميع الرومات الكتابية**\n$**mcv - لقفل جميع الرومات الصوتية**\n$**umcv - لفتح جميع الرومات الصوتية**`)  
- 
-.setTimestamp()
-	});
-	
-	}) 
-vv.on("collect", r => {
-    zg.edit({embed: new Discord.RichEmbed ()
-.setAuthor(client.user.username , client.user.avatarURL)
- .setThumbnail(msg.author.avatarURL)
- .setTitle(`Welcome To ${msg.guild.name}`)
-           .setFooter(`- Requested By: ${msg.author.tag}`,msg.author.avatarURL)
-  .setURL('https://discordapp.com/oauth2/authorize/?permissions=268443710&scope=bot&client_id=465885551329804288')
-.setDescription(`**' S Bot Discord.\n$help - لرؤية الأوامر :comet: \n$inv - لدعوة البوت :wine_glass: \n معلومات عن البوت :thinking: \n بوت ديسكورت متكامل :soccer: :microphone: :earth_americas: \nيوجد داخل البوت خاصية منع التهكير مجانا وبسهوله تامة :scream: \nصيانة دورية :stopwatch: :wrench: \n 24 ساعة :point_up:
- \nاضافات يومية :link: \n الدعم الفني للمساعدةة : https://discord.gg/VbnKYRx  :rose:  \n وشكرا لكم :lizard: **`) 
- 
- 
- .setTimestamp()
-    });
-    
-})
-cc.on("collect", r => {
-    zg.delete();
-	msg.delete();
-})
-	 }).then(msg => msg.delete(15000));
-	 })
-	 })
-	 })
-})
-	 }
-	 });
 
 //اشتغل 
 
-
+client.on("message", message => {
+ if (message.content === "$help") {
+   message.channel.send('**لقدّ تمّ ارسالّ الرسالةّ بالخاصّ** :ok_hand: ')
+ }
+});
 client.on('message',   eyad =>{
     
     var  args = eyad.content.split(" ").slice(2).join(" ")
@@ -1047,6 +1018,7 @@ client.on("message", message => {
 	if( !message.guild ) return;
 	if( !msg.startsWith( prefix + 'role' ) ) return;
 	if( msg.toLowerCase().startsWith( prefix + 'rerole ;' ) ){
+if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(' ليس لديك صلاحيات');
 		if( !args[0] ) return message.reply( '**:x: يرجى وضع الشخص المراد سحب منه الرتبة**' );
 		if( !args[1] ) return message.reply( '**:x: يرجى وضع الرتبة المراد سحبها من الشخص**' );
 		var role = msg.split(' ').slice(2).join(" ").toLowerCase(); 
