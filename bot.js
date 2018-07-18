@@ -207,6 +207,22 @@ var heroo = new Discord.RichEmbed()
   });
 }
 });
+
+
+client.on('message', ra3d => {
+  
+  if (ra3d.content ===  prefix + 'cc'){
+              if (!ra3d.member.hasPermission('MANAGE_ROLES')) return ra3d.channel.sendMessage('`**⚠ | `[MANAGE_ROLES]` لا يوجد لديك صلاحية**'); 
+              ra3d.channel.send("**✅ | يتم عمل الالوان**");
+                  setInterval(function(){})
+                    let count = 0;
+                    let ecount = 0;
+          for(let x = 1; x < 141; x++){
+            ra3d.guild.createRole({name:x,
+              color: 'RANDOM'})
+              }
+            }
+       });
 client.on("message", message => {
 var args = message.content.split(" ").slice(1).join(" ")
     if(message.content.startsWith(prefix + "server")) {
