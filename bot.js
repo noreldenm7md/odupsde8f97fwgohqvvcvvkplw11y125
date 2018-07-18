@@ -274,8 +274,7 @@ m.sendMessage(args)
 });
 
 
-
-client.on('message', message => {
+	   client.on('message', message => {
           
 
            if (message.content.startsWith(prefix + "user")) {
@@ -307,8 +306,8 @@ var mentionned = message.mentions.members.first();
        
     .setColor("#0a0909")
  .setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد', \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n** ${moment(heg.createdTimestamp).fromNow()}` ,true) 
-.addField(': تاريخ دخولك لسيرفرنا', \`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
+.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n** ${moment(heg.createdTimestamp).fromNow()}` ,true) 
+.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
 
 .setFooter(message.author.username,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')  
     message.channel.sendEmbed(id);
@@ -318,9 +317,6 @@ var mentionned = message.mentions.members.first();
 
          
      });
-
-
-
 
 
 
