@@ -112,13 +112,12 @@ client.on('message', message => {
     }
     });
 
-
 client.on('message', message => {
   if (message.content.startsWith("$tr")) {
 
       const translate = require('google-translate-api');
       const Discord = require('discord.js');
-      let f = ['https://cdn57.androidauthority.net/wp-content/uploads/2015/10/Google-Translate-AA-840x463.jpg'];
+      
 
   let toTrans = message.content.split(' ').slice(1);
   let language;
@@ -128,36 +127,17 @@ client.on('message', message => {
       return message.reply(`**من فضلك قم باستخدام . \`$tr [الكلمه] to [اللغه]\`**`);
   }
   let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
-  translate(finalToTrans, {to: language}).then(res => {
-          message.channel.send({embed: {
-              color: 3447003,
-              author: {
-                name: 'S Bot translate',
-                icon_url: f
-              },
-              fields: [{
-                  name: "S Bot",
-                  value: `**من :**  ${res.from.language.iso}\n\`\`\` ${finalToTrans}\`\`\`\n**الي: ** ${language}\n\`\`\` ${res.text}\`\`\``
-                }
-              ],
-              timestamp: new Date(),
-              footer: {
-                icon_url: f,
-                text: "S Bot"
-              }
-            }
-          });
-  }).catch(err => {
-      message.channel.send({
-          embed: {
-              description: '❌  لم استطيع العثور علي اللغة المطلوبه',
-              color: 0xE8642B
-          }
-      });
-  });
-  }
-});
+	let Embed = new Discord.RichEmbed()
+    .setDescription(`
+      من ${finalToTrans}
 
+    الي ${language}
+    `)
+                message.channel.send(Embed)                                        
+            
+          }
+
+});
 
 client.on("message",function(message) {
     if(message.content.startsWith(prefix + 'stats')) {
