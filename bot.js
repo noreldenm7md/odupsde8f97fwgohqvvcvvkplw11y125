@@ -307,8 +307,12 @@ var mentionned = message.mentions.members.first();
        
     .setColor("#0a0909")
  .setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد', `\${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n${moment(heg.createdTimestamp).fromNow()}**` ,true) 
-.addField(': تاريخ دخولك لسيرفرنا', `\${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
+.addField(': تاريخ دخولك للديسكورد' ,true)
+.addField(`**\n${moment(heg.createdTimestamp).fromNow()}**` ,true) 
+.addField(`**${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')}**` ,true)
+.addField(`تاريخ دخولك لسيرفرنا` , true)
+.addField(`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}`)
+.addField(`**${moment(h.joinedAt).fromNow()} **`)
 .setFooter(message.author.username,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')  
     message.channel.sendEmbed(id);
 })
@@ -317,8 +321,6 @@ var mentionned = message.mentions.members.first();
 
          
      });
-
-
 
 
 
@@ -358,71 +360,6 @@ client.on('message',function(message) {
 
 
 
-client.on('message',  message =>{
-var sbot = 60000;
-	let f = message.mentions.users.first();
-if (message.author.sbot) return;
-if (!message.content.startsWith(prefix)) return;
-if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
-var command = message.content.split(" ")[0];
-command = command.slice(prefix.length);
-var args = message.content.split(" ").slice(1);
-    if(command == "mute") {
-   var tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(!tomute) return message.reply("**يجب عليك المنشن **:x: ") .then(m => m.delete(5000));
-	if(tomute.hasPermission("MANAGE_MESSAGES"))return      message.channel.send('**للأسف لا أمتلك صلاحية** `MANAGE_MASSAGEES`');
-    var muterole = message.guild.roles.find(`name`, "Muted");
-    //start of create role
-    if(!muterole){
-      try{
-        muterole =  message.guild.createRole({
-          name: "Muted",
-          color: "#070000",
-          permissions:[]
-        })
-        message.guild.channels.forEach((channel, id) => {
-          channel.overwritePermissions(muterole, {
-            SEND_MESSAGES: false,
-            ADD_REACTIONS: false
-          });
-        });
-      }catch(e){
-        console.log(e.stack);
-      }
-    }
-    //end of create role
-  var mutetime = args[1];
-    if(!mutetime) return message.reply("**يرجى تحديد مدة الميوت**:x:");
-if(isNaN(mutetime)) return message.reply(`*يجب عليك تحديد مدة للميوت بالدقائق \n مثال : $mute <@456641975932813345> 1m . ***`)
-   (tomute.addRole(muterole.id));
-message.channel.send(`**:white_check_mark:  f.username Muted! :zipper_mouth:  `);
-setTimeout(function(){
-      tomute.removeRole(muterole.id);
-    }, mutetime*sbot);
-
-
-
-  }
-if(command === `unmute`) {
-  if(!message.member.hasPermission("MANAGE_ROLES")) return message.channel.sendMessage("**You Don't Have Premissions.**:x: ").then(m => m.delete(5000));
-if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return message.reply("**I Don't Have `MANAGE_ROLES` Permission**").then(msg => msg.delete(6000))
-
- var toMute = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if(!toMute) return message.channel.sendMessage("**يجب عليك المنشن **:x: ");
-
-  var role = message.guild.roles.find (r => r.name === "Muted");
-
-  if(!role || !toMute.roles.has(role.id)) return message.channel.sendMessage(":information_source:  f.username تم فك الميوت عنه مسبقاً! :x:")
-
-  toMute.removeRole(role)
-  message.channel.sendMessage(":white_check_mark:  f.username Unmuted! ");
-
-  return;
-
-  }
-
-});
 
 
 
@@ -449,69 +386,6 @@ if(!message.guild.member(client.user).hasPermission("MANAGE_ROLES")) return mess
 
 
 
-client.on('message', async message => {
-  if(message.content.startsWith(prefix + "tC")) {
-      if(message.author.bot) return;
-    if(!message.channel.guild) return;
-    await message.channel.send("ارسل اسم الروم").then(e => {
-    var filter = m => m.author.id === message.author.id
-    var  name = '';
-   var time = '';
-    var type = '';
-    var limit = '';
-
-    var types = ["text", "voice", "كتابي", "صوتي"];
-    var chaName = message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-    .then(collected => {
-      name = collected.first().content
-      collected.first().delete()
-
-
-
-e.edit("ارسل مدة الروم بالدقائق لااقل من 2 ولا اعلى من 180")
-var chaTime = message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-.then(co => {
-if(isNaN(co.first().content)) return message.reply("الوقت بالدقائق ! ارقام فقطٍ");
-if(co.first().content > 180 || co.first().content < 2) return message.channel.send("لا اقل من دقيقتان ولا اكثر من 180 دقيقه")
-  time = co.first().content
-co.first().delete()
-  e.edit("ارسل نوع الروم text, voice")
-var chaType = message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-.then(col => {
-  type = col.first().content
-col.first().delete()
-e.edit("ارسل عدد الاعضاء الذين يستطيعون الدخول")
-var chaLimit = message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
-.then(coll => {
-  if(isNaN(coll.first().content)) return message.reply("عدد الاعضاء يكون بالارقام فقط");
-    limit = coll.first().content
-coll.first().delete()
-
-  e.edit("جاري اعداد الغرفه الرجاء الانتضار...")
-  message.guild.createChannel(name, type).then(c => {
-    c.edit({
-      userLimit: limit
-    })
-    setTimeout(() => {
-      c.delete()
-      message.channel.send("تم انقضاء الوقت الكامل لا اعده التجديد اسنخدم امر $tC")
-    }, Math.floor(time*60000))
-    var  chna = message.guild.channels.find("name", "log")
-    const embed = new Discord.RichEmbed()
-    chna.send({
-      embed: embed.setTitle("New TempChat") .setDescription(`Channel Type: ${type}`) .addField("Channel owner", message.author.username) .addField("Channel name", name) .addField("Channel timeout", time) .addField("Channel ID", c.id)
-    })
-  })
-  e.edit("تم انشاء الغرفه استمتع")
-
-})
-})
-})
-})
-})
-
-  }
-})
 
 client.on("message", message => {
  if (message.content === "$help") {
