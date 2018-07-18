@@ -499,14 +499,8 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
 
-client.on("message", message => {
-if (message.content === "$system-sar7") {
-message.channel.send(`**الامر :  $sar7\n خاصيه صارح\nالطريقه كـ التالي :\nتروح البوت خاص : http://prntscr.com/k4kpsb \n مثال : بصارح نفسي للتجربة : http://prntscr.com/k4kq59 \n وتضغط صح 
-بيصير كذا :http://prntscr.com/k4kqna \n وبس كذا اشتغل الامر ميه ميه :thumbsup: ** `)
-} 
-});
 
-var roles = {}; 
+
 
 
 
@@ -591,6 +585,33 @@ message.react("❌")
 });
 
 
+const math = require('math-expression-evaluator');
+const stripIndents = require('common-tags').stripIndents;
+
+client.on('message', msg => {
+if (msg.content.startsWith(prefix + 'cal')) {
+  let args = msg.content.split(" ").slice(1);
+      const question = args.join(' ');
+  if (args.length < 1) {
+      msg.reply('**من فضلك .. قم بكتابة سؤال **.');
+} else {    let answer;
+  try {
+      answer = math.eval(question);
+  } catch (err) {
+      return msg.reply(`Error: ${err}`);
+  }
+
+  const embed = new Discord.RichEmbed()
+  .setThumbnail('https://banner2.kisspng.com/20180215/ade/kisspng-office-supplies-animation-calculator-5a85e764e3aa68.4914103215187249649325.jpg')
+.setDescription(`**
+ السؤال يقولك :thinking:  : ${question}
+
+ طبعا الاجابة :writing_hand: : ${answer}**
+`)
+  msg.channel.send(embed)
+  }
+};
+});
 
 client.login(process.env.BOT_TOKEN);
 
