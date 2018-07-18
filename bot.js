@@ -181,14 +181,8 @@ var heroo = new Discord.RichEmbed()
   });
 }
 });
-//انقليزي حلو
 client.on("message", message => {
 var args = message.content.split(" ").slice(1).join(" ")
-if(message.content.startsWith(prefix + 'args')) {
-if(!args) return message.reply("please select a slice");
-message.channel.send(`let args = message.content.split(" ").slice(${args}).join(" ")`);
-}
-
     if(message.content.startsWith(prefix + "server")) {
     	var verificationLevels = ['1', '2', '3', '4', '5']
         if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("Sorry, But you need `Manage Server` prermission for this");
@@ -476,7 +470,7 @@ message.channel.send(`**✅ ${user.tag} banned from the server ! ✈ **  `)
 
 var args = message.content.split(" ").slice(1);
 
-  if (command == "ban") {
+  if (command == "kick") {
                if(!message.channel.guild) return message.reply('** This command only for servers**');
          
   if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("**انت لا تملك الصلاحيات المطلوبه**");
@@ -494,66 +488,6 @@ message.channel.send(`**✅ ${user.tag} kicked from the server ! ✈ **  `)
 
 }
 });
-
-
-//روحو سطر 26 الحييين
-
-
-client.on('message', message => {
-    if (message.content === "$mct") {
-                        if(!message.channel.guild) return message.reply(' This command only for servers');
-if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(' ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: false
-           }).then(() => {
-               message.channel.send("تم قفل الرومات الكتابية :white_check_mark: ")
-               });
-             }
-if (message.content === "$umct") {
-    if(!message.channel.guild) return message.reply(' This command only for servers');
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         SEND_MESSAGES: true
-           }).then(() => {
-               message.channel.send("تم فتح الرومات الكتابية :white_check_mark:")
-           });
-             }
-
-
-
-});
-
-client.on("message", message => {
-    if(message.content.startsWith('$system-man3')) {
-      message.channel.send(`**الخطوات المطلوبة لتشغيل مانع التهكير\n1- رفع رتبه البوت تحت رتبة صاحب السيرفر مباشرا : http://prntscr.com/k5afdc \n2-اعطاء البوت صلاحية ADMINISTRATOR : http://prntscr.com/k5afpd \n وهكذا تم تفعيل مانع التهكير بنجاح وبلا اي مشاكل اذا واجهت اي مشكله توجه لسيرفر الدعم** :white_check_mark: `)
-    }
-  });
-  
-client.on('message', message => {
-    if (message.content === "$mcv") {
-                        if(!message.channel.guild) return message.reply(' This command only for servers');
-if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply(' ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         CONNECT: false
-           }).then(() => {
-               message.channel.send("تم تقفيل الرومات الصوتية :white_check_mark: ")
-           });
-             }
-if (message.content === "$umcv") {
-    if(!message.channel.guild) return message.reply(' This command only for servers');
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply('ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-          CONNECT: true
-           }).then(() => {
-               message.channel.send("تم فتح الرومات الصوتية :white_check_mark:")
-           });
-             }
-
-
-
-});
-
-
 
 
 
@@ -608,7 +542,7 @@ var roles = {};
 .setDescription(`**  :lock: لقد تمت معاقبتك  **
 
 
-  **السبب :thinking:  : نشر روابط :frog: **
+  بسبب نشر الروابط خيو :smirk: :frog: **
 `)
             .setColor("c91616")
             .setThumbnail(`${message.author.avatarURL}`)
