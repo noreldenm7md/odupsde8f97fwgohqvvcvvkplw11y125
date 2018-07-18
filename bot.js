@@ -128,15 +128,18 @@ client.on('message', message => {
   }
   let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
 	let Embed = new Discord.RichEmbed()
-    .setDescription(`
-      من ${finalToTrans}
+    .setDescription(`**
+  :sparkles:  من اللغة  ${finalToTrans}
 
-    الي ${language}
-    `)
-                message.channel.send(Embed)                                        
+:thinking:   الي اللغة ${language} 
+          
+ :black_medium_square: الكلمة المراد ترجمتها ${toTrans}
+
+
+  **  `)
+    message.channel.send(Embed)                                                    
             
-          }
-
+}
 });
 
 client.on("message",function(message) {
