@@ -89,28 +89,34 @@ client.on('message', message => {
 	      let reaction1 = msg.createReactionCollector(reaction1Filter, { time: 12000 });
     let reaction2 = msg.createReactionCollector(reaction2Filter, { time: 12000 });
     reaction1.on("collect", r => {
-    message.channel.send(`☑ | Done ... The Broadcast Message Has Been Sent For ${message.guild.members.size} Members`).then(m => m.delete(5000));
+    message.channel.send(`**☑ |   لقد تم ارسال الرسالة لـ ${message.guild.members.size} عضوآ**`).then(m => m.delete(5000));
     message.guild.members.forEach(m => {
     var bc = new
        Discord.RichEmbed()
        .setColor('RANDOM')
-       .setTitle('Broadcast')
-       .addField('Server', message.guild.name)
-       .addField('Sender', message.author.username)
-       .addField('Message', args)
-       .setThumbnail(message.author.avatarURL)
-       .setFooter(copy, client.user.avatarURL);
+       .setDescription(`
+**:shield: السيرفر : ** ${message.guild.name}
+** :thinking:  المرسل : ** ${message.author.username}
+** :book:  الرسالة : ** ${args}
+
+
+
+
+        `)
+         .setTimestamp()
+         .setFooter('S Bot' , 'https://cdn.discordapp.com/avatars/465885551329804288/55614337cfb9813916a60383469736d9.jpg?size=128')
     m.send({ embed: bc })
     msg.delete();
     })
     })
     reaction2.on("collect", r => {
-    message.channel.send(`**Broadcast Canceled.**`).then(m => m.delete(5000));
+    message.channel.send(`**تم الغاء البرودكاست :x:.**`).then(m => m.delete(5000));
     msg.delete();
     })
     })
     }
     });
+
 
 client.on('message', message => {
   if (message.content.startsWith("$tr")) {
