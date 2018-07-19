@@ -118,6 +118,29 @@ client.on('message', message => {
     });
 
 
+  client.on('message', message => {
+    if (message.content.startsWith("$tr")) {
+
+        const translate = require('google-translate-api');
+        const Discord = require('discord.js');
+
+    let toTrans = message.content.split(' ').slice(1);
+    let language;
+
+    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
+    if (!language) {
+        return message.reply(`**من فضلك قم باستخدام . \`$tr [الكلمه] to [اللغه]\`**`);
+    }
+    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
+    .setThumbnail('https://elmrsa.com/wp-content/uploads/2017/05/%D8%AA%D8%B1%D8%AC%D9%85%D8%A9-%D8%BA%D9%88%D8%BA%D9%84-%D8%A7%D9%84%D9%81%D9%88%D8%B1%D9%8A%D8%A9.png')
+.setDescription(`**
+من اللغة :sparkles: : ${res.from.language.iso}
+الي اللغة :thinking: : ${language}
+الترجمة هي:scroll:  :  ${res.text}
+**
+`)
+    }
+});
 
 
 client.on("message",function(message) {
