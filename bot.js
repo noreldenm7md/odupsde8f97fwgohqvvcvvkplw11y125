@@ -94,10 +94,10 @@ client.on('message', message => {
     var bc = new
        Discord.RichEmbed()
        .setColor('RANDOM')
-       .setDescription(`
+       .setDescription(`البرودكاست :mega:
 **:shield: السيرفر : ** ${message.guild.name}
 ** :thinking:  المرسل : ** ${message.author.username}
-** :book:  الرسالة : ** ${args}
+**  الرسالة : ** ${args}
 
 
 
@@ -118,35 +118,7 @@ client.on('message', message => {
     });
 
 
-client.on('message', message => {
-  if (message.content.startsWith("$tr")) {
 
-      const translate = require('google-translate-api');
-      const Discord = require('discord.js');
-      
-
-  let toTrans = message.content.split(' ').slice(1);
-  let language;
-
-  language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
-  if (!language) {
-      return message.reply(`**من فضلك قم باستخدام . \`$tr [الكلمه] to [اللغه]\`**`);
-  }
-  let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
-	let Embed = new Discord.RichEmbed()
-    .setDescription(`**
-  :sparkles:  من اللغة  ${finalToTrans}
-
-:thinking:   الي اللغة ${language} 
-          
- :black_medium_square: الكلمة المراد ترجمتها ${toTrans}
-
-
-  **  `)
-    message.channel.send(Embed)                                                    
-            
-}
-});
 
 client.on("message",function(message) {
     if(message.content.startsWith(prefix + 'stats')) {
@@ -230,33 +202,21 @@ client.on('message', ra3d => {
             }
        });
 client.on("message", message => {
-var args = message.content.split(" ").slice(1).join(" ")
     if(message.content.startsWith(prefix + "server")) {
-    	var verificationLevels = ['1', '2', '3', '4', '5']
-        if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("Sorry, But you need `Manage Server` prermission for this");
+        if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("**ليس لديك البرمشن المطلوب لاستخدام هذا الامر :x:**");
         const embed = new Discord.RichEmbed()
         .setAuthor(message.guild.name, message.guild.iconURL)
-        .setColor("BLACK")
-        .addField(":id: **Server ID**:", message.guild.id, true)
+        .setColor("RANDOM")
 
-        .addField(":calendar: **Created On**", `${message.guild.createdAt.toLocaleString()} \n ${moment(message.guild.createdAt).fromNow()}`,true)
-
-        .addField(":crown: **Owned by**:", `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator} [${message.guild.owner.user.id}]`, true)
-
-        .addField(`:speech_balloon: **Channels** [${message.guild.channels.size}]:`, ` Voice [${message.guild.channels.filter(m => m.type === 'voice').size}] | Text [${message.guild.channels.filter(m => m.type === 'text').size}] | Category [${message.guild.channels.filter(m => m.type == 'category').size}]`,true)
-
-        .addField(`:busts_in_silhouette: **Members** [${message.guild.memberCount}]: `, `Online [${message.guild.members.filter(m => m.presence.status != 'offline').size}] | Offline [${message.guild.members.filter(m => m.presence.status === 'offline').size}]`, true)
-
-        .addField(`:closed_lock_with_key: **Roles**: `, `[${message.guild.roles.size}]`, true)
-
-        .addField(`:earth_africa: **Others:** `, `**Region:** ${message.guild.region} \n **Verification Level:** ${verificationLevels[message.guild.verificationLevel]}`, true)
-
+.addField('**عدد اعضاء السيرفر :bust_in_silhouette: **' , `${message.guild.memberCount}`)
+.addField('**اونر السيرفر :crown:' , `${message.guild.owner.user.username}`)
+.addField('**الرومات :scroll: ')
+.addField(`#`, `${message.guild.channels.filter(m => m.type === 'text').size}`)
+.addField( `:loud_sound: `,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
+.addField(`**عدد الرتب**`,`${message.guild.roles.size}`)
         message.channel.send({embed:embed})
     }
-})
-
-
-
+});
 
 
 
