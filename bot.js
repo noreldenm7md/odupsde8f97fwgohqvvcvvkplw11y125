@@ -251,7 +251,59 @@ client.channels.get("465340887279468564").sendEmbed(embed)
 
 
 
+client.on('message', message => {
+    if(message.content.startsWith('$help')) {
+        
+        message.channel.send('**لقد تم أرسال جميع أوامر البوت في الخاص :envelope_with_arrow: | Check your DM.**')
+    }
+});
+client.on('message', message => {
+    if(message.content.startsWith('$sar7')) {
+        
+        message.channel.send('**هذا الامر يكتب في خاص البوت فقط لاغير**')
+    }
+});
+client.on('message', message => {
+    if(message.content.startsWith('$help')) {
+   const embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+        .setDescription(`**
+        
+╭━━━╮╭━━╮╱╱╱╭╮
+┃╭━╮┃┃╭╮┃╱╱╭╯╰╮
+┃╰━━╮┃╰╯╰┳━┻╮╭╯
+╰━━╮┃┃╭━╮┃╭╮┃┃
+┃╰━╯┃┃╰━╯┃╰╯┃╰╮
+╰━━━╯╰━━━┻━━┻━╯
+Support : https://discord.gg/7XpHbqP 
+:black_medium_square: Servers : ${message.guilds.size}
+:black_medium_square: Users : ${message.users.size}
+By , <@456641975932813345> - <@323885452207587329> .
+        `)
+    message.channel.send(embed)
+}
+});
+client.on('message', message => {
+    if(message.content.startsWith('$help')) {
+   const embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+        .setDescription(`**
+General Commands. :earth_asia: 
+$server - معلومات عن سيرفرك :scroll:   
+$user - معلومات عن حسابك :id: 
+$avatar - صورة بروفايلك الشخصي :frame_photo: 
+$time - الوقت الحالي - السعودية فقط :flag_sa: 
+$sar7 - لمصارحة شخص  :flushed: 
+$cal - آله حاسبة خاصةة بالبوت :calendar_spiral: 
 
+
+ 
+
+        
+        `)
+    message.channel.send(embed)
+}
+});
 
 
 client.on('message', message => {
