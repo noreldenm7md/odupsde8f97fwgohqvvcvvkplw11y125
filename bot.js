@@ -209,11 +209,11 @@ client.on("message", message => {
         .setColor("RANDOM")
 
 .addField('**عدد اعضاء السيرفر :bust_in_silhouette: **' , `${message.guild.memberCount}`)
-.addField('**اونر السيرفر :crown:' , `${message.guild.owner.user.username}`)
-.addField('**الرومات :scroll: ')
-.addField(`#`, `${message.guild.channels.filter(m => m.type === 'text').size}`)
-.addField( `:loud_sound: `,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
-.addField(`**عدد الرتب**`,`${message.guild.roles.size}`)
+.addField('**اونر السيرفر :crown:**' , `${message.guild.owner.user.username}`)
+.addField(`**الرومات :scroll: `,true)
+.addField(`# الكتابية`, `${message.guild.channels.filter(m => m.type === 'text').size}`)
+.addField( `:loud_sound: الصوتية`,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
+.addField(`**عدد الرتب**:briefcase:`,`${message.guild.roles.size}`)
         message.channel.send({embed:embed})
     }
 });
