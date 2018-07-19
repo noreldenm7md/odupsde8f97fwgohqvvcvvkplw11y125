@@ -118,29 +118,6 @@ client.on('message', message => {
     });
 
 
-  client.on('message', message => {
-    if (message.content.startsWith("$tr")) {
-
-        const translate = require('google-translate-api');
-        const Discord = require('discord.js');
-
-    let toTrans = message.content.split(' ').slice(1);
-    let language;
-
-    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
-    if (!language) {
-        return message.reply(`**من فضلك قم باستخدام . \`$tr [الكلمه] to [اللغه]\`**`);
-    }
-    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
-    .setThumbnail('https://elmrsa.com/wp-content/uploads/2017/05/%D8%AA%D8%B1%D8%AC%D9%85%D8%A9-%D8%BA%D9%88%D8%BA%D9%84-%D8%A7%D9%84%D9%81%D9%88%D8%B1%D9%8A%D8%A9.png')
-.setDescription(`**
-من اللغة :sparkles: : ${res.from.language.iso}
-الي اللغة :thinking: : ${language}
-الترجمة هي:scroll:  :  ${res.text}
-**
-`)
-    }
-});
 
 
 client.on("message",function(message) {
@@ -233,10 +210,10 @@ client.on("message", message => {
 
 .addField('**عدد اعضاء السيرفر :bust_in_silhouette: **' , `${message.guild.memberCount}`)
 .addField('**اونر السيرفر :crown:**' , `${message.guild.owner.user.username}`)
-.addField(`**الرومات :scroll: `,true)
+.addField(`**الرومات :scroll: **`,true)
 .addField(`# الكتابية`, `${message.guild.channels.filter(m => m.type === 'text').size}`)
 .addField( `:loud_sound: الصوتية`,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
-.addField(`**عدد الرتب**:briefcase:`,`${message.guild.roles.size}`)
+.addField(`**عدد الرتب**:briefcase:**`,`${message.guild.roles.size}`)
         message.channel.send({embed:embed})
     }
 });
@@ -340,7 +317,34 @@ var mentionned = message.mentions.members.first();
 
 
 
+client.on('message', message => {
+            var currentTime = new Date(),
+            hours = currentTime.getHours() + 0 ,
+            minutes = currentTime.getMinutes(),
+            seconds = currentTime.getSeconds(),
+            years = currentTime.getFullYear(),
+            month = currentTime.getMonth() + 1,
+            day = currentTime.getDate(),
+            week = currentTime.getDay();
+           
+             
+ 
+            if (minutes < 10) {
+                minutes = "0" + minutes;
+            }
+            var suffix = "AM";
+            if (hours >= 12) {
+                suffix = "PM";
+                hours = hours - 12;
+            }
+            if (hours == 0) {
+                hours = 12;
+            }
+                if(message.content.startsWith('$time')) {
+message.channel.send( "🕐 Time   [" + hours + ":" + minutes  +" " + suffix + "]") 
 
+}
+});
 
 
 client.on('message',function(message) {
