@@ -441,15 +441,13 @@ client.on('message', message => {
            }
                if(message.content.startsWith('$time')) {
                    const embed = new Discord.RichEmbed()
-          .setDiscreption(`**
-__🕐 Time__   「  ${hours} : ${minutes} : ${suffix} 」
-__ :satellite: Date__ 「 ${years} : ${month} : ${day} 」
-          **  `)
+          .addField(`🕐 Time `,` ** 「  ${hours} : ${minutes} : ${suffix} 」**`)
+.addField(` :satellite: Date `,`**「 ${years} : ${month} : ${day} 」**`)
+
+          
 message.channel.send(embed)
 }
-}); 
-
-
+});   
 client.on('message',function(message) {
    if(message.content === prefix + "inv") {
        if(!message.channel.guild) return;
