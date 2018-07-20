@@ -294,13 +294,56 @@ $cal - آله حاسبة خاصةة بالبوت :calendar_spiral:
 $voice - معرفة عدد المتواجدين بالصوت :microphone: 
 $allbots - رؤية جميع بوتات السيرفر :robot:
 $ping - رؤية سرعة اتصالك :stopwatch:  
-
+$tr - لترجمة كلامك :pen_ballpoint: 
         **
         `)
-    message.channel.send(embed)
+    message.author.send(embed)
 }
 });
+  client.on('message', message => {
+    if (message.content.startsWith("$tr")) {
 
+        const translate = require('google-translate-api');
+        const Discord = require('discord.js');
+
+    let toTrans = message.content.split(' ').slice(1);
+    let language;
+
+    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
+    if (!language) {
+        return message.reply(`**من فضلك قم باستخدام . \`$tr [الكلمه] to [اللغه]\`**`);
+    }
+    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
+    translate(finalToTrans, {to: language}).then(res => {
+            message.channel.send({embed: {
+                color: 3447003,
+                author: {
+                  name: 'S Bot translate',
+                  icon_url: client.user.avatarURL
+                },
+                fields: [{
+                    name: "S Bot",
+                    value: `**من:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**الي: **${language}\n\`\`\`${res.text}\`\`\``
+                  }
+                ],
+                timestamp: new Date(),
+                footer: {
+                  icon_url: client.user.avatarURL,
+                  text: "S Bot"
+                }
+              }
+            });
+    }).catch(err => {
+        message.channel.send({
+            embed: {
+                description: '❌  لم استطيع العثور علي اللغة المطلوبه',
+                color: 0xE8642B
+            }
+        });
+    });
+    }
+});
+  
 
 client.on('message', message => {
             if(!message.channel.guild) return;
@@ -315,7 +358,15 @@ m.sendMessage(args)
 }
 });
 
-
+  client.on('message', message => {
+if(message.content == '<@465885551329804288>') {
+message.channel.startTyping()
+setTimeout(() => { 
+message.channel.stopTyping()
+}, 7000);
+}
+});
+  
 	   client.on('message', message => {
           
 
@@ -366,33 +417,37 @@ var mentionned = message.mentions.members.first();
 
 
 client.on('message', message => {
-            var currentTime = new Date(),
-            hours = currentTime.getHours() + 0 ,
-            minutes = currentTime.getMinutes(),
-            seconds = currentTime.getSeconds(),
-            years = currentTime.getFullYear(),
-            month = currentTime.getMonth() + 1,
-            day = currentTime.getDate(),
-            week = currentTime.getDay();
-           
-             
- 
-            if (minutes < 10) {
-                minutes = "0" + minutes;
-            }
-            var suffix = "AM";
-            if (hours >= 12) {
-                suffix = "PM";
-                hours = hours - 12;
-            }
-            if (hours == 0) {
-                hours = 12;
-            }
-                if(message.content.startsWith('$time')) {
-message.channel.send( "**__ 🕐 Time__   「" + hours + ":" + minutes  +" " + suffix + "」**") 
+           var currentTime = new Date(),
+           hours = currentTime.getHours() + 0 ,
+           minutes = currentTime.getMinutes(),
+           seconds = currentTime.getSeconds(),
+           years = currentTime.getFullYear(),
+           month = currentTime.getMonth() + 1,
+           day = currentTime.getDate(),
+           week = currentTime.getDay();
+      
+            
 
+           if (minutes < 10) {
+               minutes = "0" + minutes;
+           }
+           var suffix = "AM";
+           if (hours >= 12) {
+               suffix = "PM";
+               hours = hours - 12;
+           }
+           if (hours == 0) {
+               hours = 12;
+           }
+               if(message.content.startsWith('$time')) {
+                   const embed = new Discord.RichEmbed()
+          .setDiscreption(`**
+__🕐 Time__   「  ${hours} : ${minutes} : ${suffix} 」
+__ :satellite: Date__ 「 ${years} : ${month} : ${day} 」
+          **  `)
+message.channel.send(embed)
 }
-});
+}); 
 
 
 client.on('message',function(message) {
