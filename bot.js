@@ -329,7 +329,7 @@ client.on('message', message => {
    const embed = new Discord.RichEmbed()
 .setColor('RANDOM')
         .setDescription(`**
-General Commands. :earth_asia: 
+General's Commands. :earth_asia: 
 $server - معلومات عن سيرفرك :scroll:   
 $user - معلومات عن حسابك :id: 
 $avatar - صورة بروفايلك الشخصي :frame_photo: 
@@ -339,12 +339,35 @@ $cal - آله حاسبة خاصةة بالبوت :calendar_spiral:
 $voice - معرفة عدد المتواجدين بالصوت :microphone: 
 $allbots - رؤية جميع بوتات السيرفر :robot:
 $ping - رؤية سرعة اتصالك :stopwatch:  
-$tr - لترجمة كلامك :pen_ballpoint: 
-        **
+$mcstats - يعطيك معلومات لأي سيرفر ماين كرافتي :crossed_swords: 
+$serch - للبحث عن اسم شخص معك بالسيرفر :battery: 
+        
         `)
     message.author.send(embed)
 }
 });
+
+client.on('message', message => {
+    if(message.content.startsWith('$help')) {
+   const embed = new Discord.RichEmbed()
+.setColor('RANDOM')
+        .setDescription(`**
+Admin's Commands. :wrench: 
+$ban - أمر الباند :no_entry:
+$kick - أمر الباند  :outbox_tray:
+$cc - صنع ألوان :heart:
+$bc - البرودكاست :mega:
+$clear - مسح الشات :hourglass_flowing_sand: 
+$move - لنقل الاعضاء الي الروم الخاص بك ⚠️
+
+
+**
+        
+        `)
+    message.author.send(embed)
+}
+});
+
   client.on('message', message => {
     if (message.content.startsWith("$tr")) {
 
