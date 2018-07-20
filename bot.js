@@ -254,15 +254,10 @@ client.channels.get("465340887279468564").sendEmbed(embed)
 client.on('message', message => {
     if(message.content.startsWith('$help')) {
         
-        message.channel.send('**لقد تم أرسال جميع أوامر البوت في الخاص :envelope_with_arrow: | Check your DM.**')
+        message.channel.send('**[ لقد تم أرسال جميع أوامر البوت في الخاص :envelope_with_arrow: | Check your DM. ]**')
     }
 });
-client.on('message', message => {
-    if(message.content.startsWith('$sar7')) {
-        
-        message.channel.send('**هذا الامر يكتب في خاص البوت فقط لاغير**')
-    }
-});
+
 client.on('message', message => {
     if(message.content.startsWith('$help')) {
    const embed = new Discord.RichEmbed()
@@ -278,7 +273,8 @@ client.on('message', message => {
 Support : https://discord.gg/7XpHbqP 
 :black_medium_square: Servers : ${client.guilds.size}
 :black_medium_square: Users : ${client.users.size}
-By , <@456641975932813345> - <@323885452207587329> . **
+By , <@456641975932813345> - <@323885452207587329> 
+<@406143689984049152> - <@352139023348924418> - <@298732816995319809> .**
         `)
     message.author.send(embed)
 }
@@ -295,13 +291,13 @@ $avatar - صورة بروفايلك الشخصي :frame_photo:
 $time - الوقت الحالي - السعودية فقط :flag_sa: 
 $sar7 - لمصارحة شخص  :flushed: 
 $cal - آله حاسبة خاصةة بالبوت :calendar_spiral: 
+$voice - معرفة عدد المتواجدين بالصوت :microphone: 
+$allbots - رؤية جميع بوتات السيرفر :robot:
+$ping - رؤية سرعة اتصالك :stopwatch:  
 
-
- 
-**
-        
+        **
         `)
-    message.author.send(embed)
+    message.channel.send(embed)
 }
 });
 
@@ -393,7 +389,7 @@ client.on('message', message => {
                 hours = 12;
             }
                 if(message.content.startsWith('$time')) {
-message.channel.send( "🕐 Time   [" + hours + ":" + minutes  +" " + suffix + "]") 
+message.channel.send( "**__ 🕐 Time__   「" + hours + ":" + minutes  +" " + suffix + "」**") 
 
 }
 });
@@ -623,7 +619,7 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 .setDescription(`**  :lock: لقد تمت معاقبتك  **
 
 
-  بسبب نشر الروابط خيو :smirk: :frog: **
+**  بسبب نشر الروابط خيو :smirk: :frog: **
 `)
             .setColor("c91616")
             .setThumbnail(`${message.author.avatarURL}`)
@@ -699,6 +695,54 @@ if (msg.content.startsWith(prefix + 'cal')) {
   }
 };
 });
+
+
+
+client.on("message", async function(message)  {
+if(message.content.startsWith(prefix + "voice")) {
+    message.channel.send(`**الاعضاء المتواجدون حاليا : ${message.guild.members.filter(member => member.voiceChannel).size}**`);
+
+    message.channel.send('```\n'+message.guild.members.filter(member => member.voiceChannel).map(m => m.user.tag).join('\n') + '```');
+
+}
+});
+
+client.on('message', message => {
+     if(!message.channel.guild) return;
+
+                if(message.content.startsWith(prefix + 'allbots')) {
+
+    
+    if (message.author.bot) return;
+    let i = 1;
+        const botssize = message.guild.members.filter(m=>m.user.bot).map(m=>`${i++} - <@${m.id}>`);
+          const embed = new Discord.RichEmbed()
+          .setAuthor(message.author.tag, message.author.avatarURL)
+          .setDescription(`**لقد وجد البوت ${message.guild.members.filter(m=>m.user.bot).size} بوت في السيرفر :electric_plug: **
+${botssize.join('\n')}`)
+.setFooter('S Bot','https://cdn.discordapp.com/avatars/465885551329804288/55614337cfb9813916a60383469736d9.jpg?size=128')
+.setTimestamp();
+message.channel.send(embed)
+
+}
+
+
+});
+
+
+client.on('message', message => {
+
+  if(message.content.startsWith('$ping')) {
+    message.channel.send('**:stopwatch: Pinging...**').then(sent => {
+      sent.edit(`**Pong! Took ${sent.createdTimestamp - message.createdTimestamp} ms :stopwatch: **`)
+})
+}
+    
+
+         
+     });
+
+
 
 client.login(process.env.BOT_TOKEN);
 
