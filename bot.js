@@ -94,7 +94,7 @@ client.on('message', message => {
     var bc = new
        Discord.RichEmbed()
        .setColor('RANDOM')
-       .setDescription(`البرودكاست :mega:
+       .setDescription(`**البرودكاست :mega: **
 **:shield: السيرفر : ** ${message.guild.name}
 ** :thinking:  المرسل : ** ${message.author.username}
 **  الرسالة : ** ${args}
@@ -210,10 +210,10 @@ client.on("message", message => {
 
 .addField('**عدد اعضاء السيرفر :bust_in_silhouette: **' , `${message.guild.memberCount}`)
 .addField('**اونر السيرفر :crown:**' , `${message.guild.owner.user.username}`)
-.addField(`**الرومات :scroll: **`,true)
+.addField(`**الرومات :scroll: **`,` ّ `)
 .addField(`# الكتابية`, `${message.guild.channels.filter(m => m.type === 'text').size}`)
 .addField( `:loud_sound: الصوتية`,`${message.guild.channels.filter(m => m.type === 'voice').size}`)
-.addField(`**عدد الرتب**:briefcase:**`,`${message.guild.roles.size}`)
+.addField(`**عدد الرتب :briefcase:**`,`${message.guild.roles.size}`)
         message.channel.send({embed:embed})
     }
 });
