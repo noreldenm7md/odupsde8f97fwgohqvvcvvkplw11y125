@@ -80,7 +80,7 @@ let Embed = new Discord.RichEmbed()
     }
 
     if (args[0].length <= 1) {
-        Embed.setFooter(`**للأستعمال : $serch [ Letter ].**`);
+        Embed.setFooter(`للأستعمال : $serch [ Letter ].`);
         return message.channel.send(Embed); 
     }
     let array = []; 
@@ -110,7 +110,7 @@ client.on('message', message => {
         .addField(":scroll: اسم السيرفر",`${args}`,true)
         .addField(":globe_with_meridians: بورت السيرفر",`${port}`)
         .setImage(`http://status.mclive.eu/${args}/${args}/25565/banner.png`)
-        .setFooter(`${bot.user.username}`)
+        .setFooter(`S Bot.`)
                 .setTimestamp()
     message.channel.send(embed)      
 }})
@@ -341,7 +341,7 @@ $allbots - رؤية جميع بوتات السيرفر :robot:
 $ping - رؤية سرعة اتصالك :stopwatch:  
 $mcstats - يعطيك معلومات لأي سيرفر ماين كرافتي :crossed_swords: 
 $serch - للبحث عن اسم شخص معك بالسيرفر :battery: 
-        
+        **
         `)
     message.author.send(embed)
 }
@@ -358,7 +358,7 @@ $kick - أمر الباند  :outbox_tray:
 $cc - صنع ألوان :heart:
 $bc - البرودكاست :mega:
 $clear - مسح الشات :hourglass_flowing_sand: 
-$move - لنقل الاعضاء الي الروم الخاص بك ⚠️
+$move - لنقل الاعضاء الي الروم الخاص بك :warning:
 
 
 **
